@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Geist";
+  src: local("Geist"), url(../public/fonts/geistLight.ttf) format("ttf");
+}

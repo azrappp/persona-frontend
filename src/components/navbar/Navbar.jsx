@@ -1,14 +1,35 @@
 function Navbar(params) {
   return (
     <>
-      <div className="text-center text-2xl text-green-500 font-geist">
-        <div>Kumar</div>
-        <div className="section">
-          <a href="">Home</a>
-          <a href="">Team</a>
-          <a href="">Contact</a>
+      <nav>
+        <div className="flex flex-row items-center justify-between text-center">
+          <div className="text-white font-geist-semibold font-semibold ms-8 my-4 text-2xl">
+            Kumar
+          </div>
+          <div className="text-kmr-grey-200">
+            <a
+              className="m-4 font-geist-regular text-sm hover:text-white"
+              href=""
+            >
+              Home
+            </a>
+            <a
+              className="m-4 font-geist-regular text-sm  hover:text-white"
+              href=""
+            >
+              Team
+            </a>
+            <a
+              className="m-4 font-geist-regular text-sm hover:text-white"
+              href=""
+            >
+              Contact
+            </a>
+          </div>
+          <div></div>
         </div>
-      </div>
+      </nav>
+      <div className="line"></div>
     </>
   );
 }

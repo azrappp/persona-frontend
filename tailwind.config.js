@@ -4,20 +4,24 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'geist-regular': ["Geist-Regular"],
-        'geist-semibold': ["Geist-SemiBold"],
-        'geist-bold': ["Geist-Bold"]
+        "geist-regular": ["Geist-Regular"],
+        "geist-semibold": ["Geist-SemiBold"],
+        "geist-bold": ["Geist-Bold"],
       },
       colors: {
-        'kmr-black': {
-          100: '#B9B9B9',
-          500: '#0A0A0A',
-          900: '#000000'
+        "kmr-black": {
+          100: "#B9B9B9",
+          500: "#0A0A0A",
+          900: "#000000",
         },
-        'kmr-green': {
-          0: '#408A4C'
-        }
-      }
+        "kmr-green": {
+          0: "#408A4C",
+        },
+        "kmr-grey": {
+          100: "#C4C4C4",
+          200: "#898989",
+        },
+      },
     },
   },
   plugins: [],

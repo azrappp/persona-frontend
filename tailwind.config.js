@@ -4,9 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "geist-regular": ["Geist-Regular"],
-        "geist-semibold": ["Geist-SemiBold"],
-        "geist-bold": ["Geist-Bold"],
+        geist: ["Geist", "sans-serif"],
       },
       colors: {
         "kmr-black": {

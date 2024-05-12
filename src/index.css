@@ -2,17 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Geist-Regular";
-  src: local("Geist-Regular"), url(../public/fonts/Geist-Regular.ttf) format("ttf");
-}
-
-@font-face {
-  font-family: "Geist-Semibold";
-  src: local("Geist-SemiBold"), url(../public/fonts/Geist-SemiBold.ttf) format("ttf");
-}
-
-@font-face {
-  font-family: "Geist-Bold";
-  src: local("Geist-Bold"), url(../public/fonts/Geist-Bold.ttf) format("ttf"); 
+@layer base {
+  @font-face {
+    font-family: "Geist";
+    src: url(/fonts/GeistVF.woff2) format("woff2");
+  }
 }

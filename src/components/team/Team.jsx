@@ -1,6 +1,18 @@
+import { useState } from "react";
 import Card from "../membercard/Membercard";
+import axios from "axios";
+import { useEffect } from "react";
 
-function Team(params) {
+function Team() {
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    const getMembers = async () => {
+      const membersResponse = await axios.get('http://localhost:4000/api/members');
+      setMembers(membersResponse.data.data);
+    };
+    getMembers();
+  }, []);
+  
   return (
     <>
       <div className="text-white mx-auto container px-32 pt-6 flex flex-col gap-2 items-center">
@@ -11,51 +23,9 @@ function Team(params) {
           Meet Our Team
         </div>
         <div className="grid grid-cols-3 gap-8">
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
-          <Card
-            image={"/images/azrafpunya.png"}
-            name={"Azraf wife"}
-            role={"Fullstack-Dev"}
-          />
+          {members.map((mem) => (
+            <Card image={mem.picture} name={mem.name} role={mem.role} key={mem.id}/>
+          ))}
         </div>
       </div>
     </>

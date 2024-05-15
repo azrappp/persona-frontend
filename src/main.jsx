@@ -6,7 +6,7 @@ import TeamPage from "./pages/TeamPage.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <LandingPage></LandingPage> */}
-    <TeamPage/>
+    <LandingPage></LandingPage>
+    {/* <TeamPage/> */}
   </React.StrictMode>
 );

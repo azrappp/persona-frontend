@@ -2,7 +2,7 @@
 
 const renderLogo = (skill) => {
     switch (skill) {
-        case "node":
+        case "nodejs":
             return <img className="m-auto" src="/icons/nodejs.svg"></img>
         case "golang":
             return <img className="m-auto" src="/icons/golang.svg"></img>
@@ -25,7 +25,7 @@ const LogoBox = (renderer, skill) => {
     )
 }
 
-const SkillsContentBox = ({skills}) => {
+const SkillsContentBox = ({skills = []}) => {
     return (
         <div className="flex flex-col gap-6 px-8 py-6">
             <div className="flex gap-3">
@@ -34,7 +34,7 @@ const SkillsContentBox = ({skills}) => {
             </div>
             <div className="flex gap-6">
                 {
-                    skills.map((skill) => LogoBox(renderLogo, skill))
+                    skills.map((skill) => LogoBox(renderLogo, skill.skill.name))
                 }
             </div>
         </div>

@@ -14,13 +14,16 @@ const renderLogo = (socmed) => {
     }
 }
 
-const SocmedContentBox = ({socmed}) => {
+const SocmedContentBox = ({socmed, link}) => {
+    console.log(link);
     return(
-        <div className="flex flex-col gap-6 px-8 py-12 hover:bg-kmr-green-0 transition-colors duration-500">
-            <div className="flex">
-                {renderLogo(socmed)}
+        <a href={link}>
+            <div className="flex flex-col gap-6 px-8 py-12 hover:bg-kmr-green-0 transition-colors duration-500">
+                <div className="flex">
+                    {renderLogo(socmed)}
+                </div>
             </div>
-        </div>
+        </a>
     )
 }
 

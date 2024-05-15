@@ -1,13 +1,44 @@
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import AboutContentBox from "../components/team-content-box/AboutContentBox";
 import InterestContentBox from "../components/team-content-box/InterestContentBox";
 import SkillsContentBox from "../components/team-content-box/SkillsContentBox";
 import SocmedContentBox from "../components/team-content-box/SocmedContentBox";
+import axios from "axios";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 
 const TeamPage = () => {
+    const [content, setContent] = useState();
+    const [picture, setPicture] = useState('');
+    useEffect(() => {
+        const getContent = async () => {
+            const resp = await axios.get('http://localhost:4000/api/members/3');
+            setContent(resp.data.data);
+        }
+        getContent();
+    }, []);
+    useEffect(() => {
+         const getPicture = async () => {
+            try {
+                const resp = await axios.get(`http://localhost:4000/api/members/pic/${content?.picture}`, {
+                    responseType: "arraybuffer"
+                });
+                const blob = new Blob([resp.data], {type: ["image/jpeg", "image/jpg", "image/png"]});
+                const imgUrl = URL.createObjectURL(blob);
+                setPicture(imgUrl);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getPicture();
+    });
     return (
-        <div className="flex flex-col container mx-auto px-32">
+        <>
+        <Navbar/>
+        <div className="flex flex-col container mx-auto px-32 py-32">
             <div className="rounded-t-3xl bg-white bg-opacity-5 border border-white border-opacity-10 border-b-0 h-[72px] px-8 flex items-center justify-between">
-                <p className="font-mono text-kmr-green-0 text-sm">Kumar@Team$ <span className="text-white">&quot;Rizki Fajar&quot;</span> -p <span className="text-white">&quot;Backend-Dev&quot;</span> -a <span className="text-white">20 y.o</span></p>
+                <p className="font-mono text-kmr-green-0 text-sm">Kumar@Team$ <span className="text-white">&quot;{content?.name}&quot;</span> -p <span className="text-white">&quot;{content?.role}&quot;</span> -a <span className="text-white">{content?.age} y.o</span></p>
                 <div className="flex gap-2">
                     <div className="w-[14px] h-[14px] bg-red-500 rounded-lg"></div>
                     <div className="w-[14px] h-[14px] bg-yellow-500 rounded-lg"></div>
@@ -17,34 +48,36 @@ const TeamPage = () => {
             <div className="flex">
                 <div className="grid grid-cols-2">
                     <div className="col-span-2 border border-white border-opacity-10 border-b-0">
-                        <AboutContentBox article={"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of "}/>
+                        <AboutContentBox article={content?.about}/>
                     </div>
                     <div className="border border-white border-opacity-10 border-r-0 box-border">
-                        <SkillsContentBox skills={["golang","node","laravel","docker"]}/>
+                        <SkillsContentBox skills={content?.skills}/>
                     </div>
                     <div className="border border-white border-opacity-10 box-border">
-                        <InterestContentBox interests={["Music", "Games", "Religions"]}/>
+                        <InterestContentBox interests={content?.interest}/>
                     </div>
                 </div>
-                <img src="/member.png" className="aspect-square object-cover"></img>
+                <img src={picture} className="aspect-square object-cover w-[452px] h-[452px]"></img>
             </div>
             <div className="py-7 border border-white border-opacity-10 border-y-0">
             </div>
             <div className="flex">
                 <div className="flex-1 border border-white border-opacity-10 border-r-0">
-                    <SocmedContentBox socmed={"github"} />
+                    <SocmedContentBox socmed={"github"} link={content?.githubLink} />
                 </div>
                 <div className="flex-1 border border-white border-opacity-10 border-r-0">
-                    <SocmedContentBox socmed={"instagram"} />
+                    <SocmedContentBox socmed={"instagram"} link={content?.instaLink} />
                 </div>
                 <div className="flex-1 border border-white border-opacity-10 border-r-0">
-                    <SocmedContentBox socmed={"telegram"} />
+                    <SocmedContentBox socmed={"telegram"} link={content?.teleLink} />
                 </div>
                 <div className="flex-1 border border-white border-opacity-10">
-                    <SocmedContentBox socmed={"linkedin"} />
+                    <SocmedContentBox socmed={"linkedin"} link={content?.linkedinLink}/>
                 </div>
             </div>
         </div>
+        <Footer/>
+        </>
     )
 }
 

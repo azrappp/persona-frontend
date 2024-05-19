@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 
 const TeamPage = () => {
   const [content, setContent] = useState();
-  const [picture, setPicture] = useState();
   const params = useParams();
 
   useEffect(() => {
@@ -24,26 +23,6 @@ const TeamPage = () => {
     getContent();
   }, [params.id]);
 
-  useEffect(() => {
-    const getPicture = async () => {
-      try {
-        const resp = await axios.get(
-          `http://localhost:4000/api/members/pic/${content?.picture}`,
-          {
-            responseType: "arraybuffer",
-          }
-        );
-        const blob = new Blob([resp.data], {
-          type: ["image/jpeg", "image/jpg", "image/png"],
-        });
-        const imgUrl = URL.createObjectURL(blob);
-        setPicture(imgUrl);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getPicture();
-  });
   return (
     <>
       <Navbar />
@@ -51,8 +30,8 @@ const TeamPage = () => {
         <div className="rounded-t-3xl bg-white bg-opacity-5 border border-white border-opacity-10 border-b-0 h-[72px] px-8 flex items-center justify-between">
           <p className="font-mono text-kmr-green-0 text-sm">
             Kumar@Team${" "}
-            <span className="text-white">&quot;{content?.name}&quot;</span> -p{" "}
-            <span className="text-white">&quot;{content?.role}&quot;</span> -a{" "}
+            <span className="text-white">&quot;{content?.name}&quot;</span> -p
+            <span className="text-white">&quot;{content?.role}&quot;</span> -a
             <span className="text-white">{content?.age} y.o</span>
           </p>
           <div className="flex gap-2">
@@ -74,7 +53,7 @@ const TeamPage = () => {
             </div>
           </div>
           <img
-            src={picture}
+            src={'http://localhost:4000/api/members/pic/'+ content?.picture}
             className="aspect-square object-cover w-[452px] h-[452px]"
           ></img>
         </div>
@@ -91,9 +70,7 @@ const TeamPage = () => {
           </div>
           <div className="flex-1 border border-white border-opacity-10">
             <SocmedContentBox
-              socmed={"linkedin"}
-              link={content?.linkedinLink}
-            />
+              socmed={"linkedin"} link={content?.linkedinLink} />
           </div>
         </div>
       </div>

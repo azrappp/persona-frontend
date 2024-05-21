@@ -1,24 +1,26 @@
 /* eslint-disable react/prop-types */
 export default function Card({ id, image, name, role }) {
   return (
-    <>
-      <a href={`/team/${id}`}>
-        <div className="flex flex-col place-items-center border border-solid border-white border-opacity-10  max-w-[270px] mb-8">
-          <div className="pt-4 px-4">
-            <img
-              className="object-cover w-[240px] h-[320px]"
-              src={'http://localhost:4000/api/members/pic/'+image}
-              alt=""
-            />
-          </div>
-          <div className="font-geist font-semibold text-xl mt-4 mb-3">
-            {name}
-          </div>
-          <div className="font-geist text-kmr-black-100 text-sm pb-4">
-            {role}
-          </div>
+    <a href={`/team/${id}`} className="w-full">
+      <div className="relative flex flex-col border border-solid border-white border-opacity-10 py-4 px-4">
+        <div className="relative basis-3/4 pb-[133.3%]">
+          <img
+            className="absolute h-full w-full object-cover"
+            src={'http://localhost:4000/api/members/pic/'+image}
+            alt={image}
+          />
         </div>
-      </a>
-    </>
+        <div className="basis-1/4 flex flex-col justify-center items-center">
+          <p className="font-geist font-semibold text-xl mt-4 mb-3">
+            {name}
+          </p>
+          <p className="font-geist text-kmr-black-100 text-sm pb-4">
+            {role}
+          </p>
+          <img className="w-4 h-4 object-fit absolute bottom-0 left-0 -translate-x-2 translate-y-2" src="/images/plus.png" alt="" />
+          <img className="w-4 h-4 object-fit absolute top-0 right-0 translate-x-2 -translate-y-2" src="/images/plus.png" alt="" />
+        </div>
+      </div>
+    </a>
   );
 }

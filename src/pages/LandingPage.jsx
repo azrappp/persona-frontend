@@ -7,8 +7,10 @@ const LandingPage = () => {
   return (
     <>
       <Navbar />
-      <Home />
-      <Team />
+      <div className="py-48 px-8 md:px-16 lg:px-32">
+        <Home />
+        <Team />
+      </div>
       <Footer />
     </>
   );

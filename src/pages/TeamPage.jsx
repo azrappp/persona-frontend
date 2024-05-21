@@ -26,54 +26,57 @@ const TeamPage = () => {
   return (
     <>
       <Navbar />
-      <div id="team" className="flex flex-col container mx-auto px-32 py-32">
+
+      <div className="flex flex-col container px-8 mx-auto md:px-16 lg:px-32 py-32">
+
+        {/* Start of Head Section */}
         <div className="rounded-t-3xl bg-white bg-opacity-5 border border-white border-opacity-10 border-b-0 h-[72px] px-8 flex items-center justify-between">
           <p className="font-mono text-kmr-green-0 text-sm">
             Kumar@Team${" "}
-            <span className="text-white">&quot;{content?.name}&quot;</span> -p
-            <span className="text-white">&quot;{content?.role}&quot;</span> -a
+            <span className="text-white">&quot;{content?.name}&quot;</span> -p{" "} 
+            <span className="text-white">&quot;{content?.role}&quot;</span> -a{" "}
             <span className="text-white">{content?.age} y.o</span>
           </p>
-          <div className="flex gap-2">
+          <div className="hidden gap-2 md:flex">
             <div className="w-[14px] h-[14px] bg-red-500 rounded-lg"></div>
             <div className="w-[14px] h-[14px] bg-yellow-500 rounded-lg"></div>
             <div className="w-[14px] h-[14px] bg-green-500 rounded-lg"></div>
           </div>
         </div>
-        <div className="flex">
-          <div className="grid grid-cols-2">
-            <div className="col-span-2 border border-white border-opacity-10 border-b-0">
+        {/* End of Head Section */}
+
+        {/* Start of Body Section */}
+        <div className="flex flex-col md:flex-row border border-white border-opacity-10">
+          <div className="basis-2/3 grid grid-cols-1 divide-y divide-solid divide-white divide-opacity-10">
+            <div className="col-span-2">
               <AboutContentBox article={content?.about} />
             </div>
-            <div className="border border-white border-opacity-10 border-r-0 box-border">
+            <div className="grid lg:grid-cols-2 lg:divide-x lg:divide-y-0 divide-y grid-cols-1 divide-solid divide-white divide-opacity-10">
               <SkillsContentBox skills={content?.skills} />
-            </div>
-            <div className="border border-white border-opacity-10 box-border">
               <InterestContentBox interests={content?.interest} />
             </div>
           </div>
-          <img
-            src={'http://localhost:4000/api/members/pic/'+ content?.picture}
-            className="aspect-square object-cover w-[452px] h-[452px]"
-          ></img>
+          <div className="basis-1/3">
+            <img
+              src={'http://localhost:4000/api/members/pic/'+ content?.picture}
+              className="md:aspect-square object-cover h-full w-full"
+              ></img>
+          </div>
         </div>
+        {/* End of Body Section */}
+
+        {/* Start of Foot Section */}
         <div className="py-7 border border-white border-opacity-10 border-y-0"></div>
-        <div className="flex">
-          <div className="flex-1 border border-white border-opacity-10 border-r-0">
+        <div className="grid grid-cols-4 border border-white border-opacity-10 divide-x divide-white divide-opacity-10">
             <SocmedContentBox socmed={"github"} link={content?.githubLink} />
-          </div>
-          <div className="flex-1 border border-white border-opacity-10 border-r-0">
             <SocmedContentBox socmed={"instagram"} link={content?.instaLink} />
-          </div>
-          <div className="flex-1 border border-white border-opacity-10 border-r-0">
             <SocmedContentBox socmed={"telegram"} link={content?.teleLink} />
-          </div>
-          <div className="flex-1 border border-white border-opacity-10">
-            <SocmedContentBox
-              socmed={"linkedin"} link={content?.linkedinLink} />
-          </div>
+            <SocmedContentBox socmed={"linkedin"} link={content?.linkedinLink} />
         </div>
+        {/* End of Foot Section */} 
+
       </div>
+
       <Footer />
     </>
   );

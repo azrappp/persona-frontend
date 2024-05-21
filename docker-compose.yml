@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: frontend
+    container_name: persona-frontend-app
     restart: always
     volumes:
       - ./:/app

@@ -1,4 +1,5 @@
-function Home() {
+/* eslint-disable react/prop-types */
+function Home({buttonCallback}) {
   return (
     <div className="container mx-auto max-w-[953px]">
       <div className="text-white flex flex-col items-center gap-8">
@@ -10,7 +11,7 @@ function Home() {
           passion, driving project success through collaboration and
           innovation&quot;
         </p>
-        <button className="mt-8 mb-12 px-8 bg-white py-2.5 text-black font-geist font-bold rounded-full">
+        <button className="mt-8 mb-12 px-8 bg-white py-2.5 text-black font-geist font-bold rounded-full" onClick={buttonCallback}>
           Get to Know
         </button>
         <div className="hidden md:block">

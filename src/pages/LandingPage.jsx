@@ -24,13 +24,13 @@ const LandingPage = () => {
         <div ref={teamRef}>
           <Team />
         </div>
-        <div className="">
+        <div className="hidden md:block">
           <Spotlight
             className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
             fill="white"
           />
           <Spotlight
-            className="h-[80vh] w-[50vw] top-10 left-full"
+            className="h-[80vh] w-[50vw] top-10 left-50"
             fill="purple"
           />
           <Spotlight 

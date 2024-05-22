@@ -3,12 +3,15 @@ import Card from "../membercard/Membercard";
 import axios from "axios";
 import { useEffect } from "react";
 
+// eslint-disable-next-line no-undef
+const BASE_URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:4000';
+
 function Team() {
   const [members, setMembers] = useState([]);
   useEffect(() => {
     const getMembers = async () => {
       const membersResponse = await axios.get(
-        "http://localhost:4000/api/members"
+        BASE_URL + "/api/members"
       );
       setMembers(membersResponse.data.data);
     };

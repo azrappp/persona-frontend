@@ -9,6 +9,9 @@ import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 import { useParams } from "react-router-dom";
 
+// eslint-disable-next-line no-undef
+const BASE_URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:4000';
+
 const TeamPage = () => {
   const [content, setContent] = useState();
   const params = useParams();
@@ -16,7 +19,7 @@ const TeamPage = () => {
   useEffect(() => {
     const getContent = async () => {
       const resp = await axios.get(
-        `http://localhost:4000/api/members/${params?.id}`
+        BASE_URL + `/api/members/${params?.id}`
       );
       setContent(resp.data.data);
     };
@@ -58,7 +61,7 @@ const TeamPage = () => {
           </div>
           <div className="basis-1/3">
             <img
-              src={'http://localhost:4000/api/members/pic/'+ content?.picture}
+              src={BASE_URL + '/api/members/pic/'+ content?.picture}
               className="md:aspect-square object-cover h-full w-full"
               ></img>
           </div>

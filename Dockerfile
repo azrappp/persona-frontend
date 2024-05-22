@@ -1,13 +1,21 @@
-FROM node:20-alpine
-
+FROM node:20-alpine as build
 WORKDIR /app
 
+ARG REACT_APP_SERVER_URL
+ENV REACT_APP_SERVER_URL=$REACT_APP_SERVER_URL
+
 COPY package*.json .
-
 RUN npm install
-
 COPY . .
+RUN npm run build
 
-EXPOSE 5173
+FROM nginx:1-alpine
+WORKDIR /usr/share/nginx/html
 
-CMD ["npm","run","dev"]
+RUN rm -rf *
+COPY --from=build /app/dist .
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+
+EXPOSE 80
+
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]

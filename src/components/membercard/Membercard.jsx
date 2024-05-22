@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+// eslint-disable-next-line no-undef
+const BASE_URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:4000';
 export default function Card({ id, image, name, role }) {
   return (
     <a href={`/team/${id}`} className="w-full">
@@ -6,7 +8,7 @@ export default function Card({ id, image, name, role }) {
         <div className="relative basis-3/4 pb-[133.3%]">
           <img
             className="absolute h-full w-full object-cover"
-            src={'http://localhost:4000/api/members/pic/'+image}
+            src={BASE_URL + '/api/members/pic/'+image}
             alt={image}
           />
         </div>

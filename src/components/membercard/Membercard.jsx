@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-undef
-const BASE_URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:4000';
+const BASE_URL = window.REACT_APP_SERVER_URL ? window.REACT_APP_SERVER_URL : 'http://localhost:4000';
 export default function Card({ id, image, name, role }) {
   return (
     <a href={`/team/${id}`} className="w-full">

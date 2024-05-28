@@ -10,7 +10,7 @@ import Footer from "../components/footer/Footer";
 import { useParams } from "react-router-dom";
 
 // eslint-disable-next-line no-undef
-const BASE_URL = process.env.REACT_APP_SERVER_URL ? process.env.REACT_APP_SERVER_URL : 'http://localhost:4000';
+const BASE_URL = window.REACT_APP_SERVER_URL ? window.REACT_APP_SERVER_URL : 'http://localhost:4000';
 
 const TeamPage = () => {
   const [content, setContent] = useState();

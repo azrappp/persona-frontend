@@ -3,10 +3,10 @@ services:
   web:
     build:
       context: .
-      args:
-        REACT_APP_SERVER_URL: ${REACT_APP_SERVER_URL}
       dockerfile: Dockerfile
     container_name: persona-frontend-app
+    environment:
+      SERVER_URL: http://localhost:4000
     restart: always
     ports:
       - 8080:80
